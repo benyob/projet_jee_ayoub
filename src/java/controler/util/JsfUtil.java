@@ -47,6 +47,11 @@ public class JsfUtil {
         FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
 
+    public static void addWrningMessage(String msg) {
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+    }
+
     public static void addSuccessMessage(String msg) {
         FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
         FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
@@ -62,6 +67,7 @@ public class JsfUtil {
     }
 
     public static enum PersistAction {
+
         CREATE,
         DELETE,
         UPDATE
