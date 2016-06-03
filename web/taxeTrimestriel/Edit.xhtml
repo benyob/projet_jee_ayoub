@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TaxeTrimestrielEditDlg" widgetVar="TaxeTrimestrielEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTaxeTrimestrielTitle}">
+            <h:form id="TaxeTrimestrielEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{taxeTrimestrielController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_local}" for="local" />
+                        <p:selectOneMenu id="local" value="#{taxeTrimestrielController.selected.local}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{localController.itemsAvailableSelectOne}"
+                                           var="localItem"
+                                           itemValue="#{localItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{taxeTrimestrielController.selected.user}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_taxeAnnuel}" for="taxeAnnuel" />
+                        <p:selectOneMenu id="taxeAnnuel" value="#{taxeTrimestrielController.selected.taxeAnnuel}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{taxeAnnuelController.itemsAvailableSelectOne}"
+                                           var="taxeAnnuelItem"
+                                           itemValue="#{taxeAnnuelItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_redevable}" for="redevable" />
+                        <p:selectOneMenu id="redevable" value="#{taxeTrimestrielController.selected.redevable}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{redevableController.itemsAvailableSelectOne}"
+                                           var="redevableItem"
+                                           itemValue="#{redevableItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{taxeTrimestrielController.selected.id}" title="#{bundle.EditTaxeTrimestrielTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_chiffreAffaire}" for="chiffreAffaire" />
+                        <p:inputText id="chiffreAffaire" value="#{taxeTrimestrielController.selected.chiffreAffaire}" title="#{bundle.EditTaxeTrimestrielTitle_chiffreAffaire}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_montantRetardTotal}" for="montantRetardTotal" />
+                        <p:inputText id="montantRetardTotal" value="#{taxeTrimestrielController.selected.montantRetardTotal}" title="#{bundle.EditTaxeTrimestrielTitle_montantRetardTotal}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_numeroTrimestre}" for="numeroTrimestre" />
+                        <p:inputText id="numeroTrimestre" value="#{taxeTrimestrielController.selected.numeroTrimestre}" title="#{bundle.EditTaxeTrimestrielTitle_numeroTrimestre}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_retardMois}" for="retardMois" />
+                        <p:inputText id="retardMois" value="#{taxeTrimestrielController.selected.retardMois}" title="#{bundle.EditTaxeTrimestrielTitle_retardMois}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_retardAutresMois}" for="retardAutresMois" />
+                        <p:inputText id="retardAutresMois" value="#{taxeTrimestrielController.selected.retardAutresMois}" title="#{bundle.EditTaxeTrimestrielTitle_retardAutresMois}" />
+                        <p:outputLabel value="#{bundle.EditTaxeTrimestrielLabel_nbrMoisRetard}" for="nbrMoisRetard" />
+                        <p:inputText id="nbrMoisRetard" value="#{taxeTrimestrielController.selected.nbrMoisRetard}" title="#{bundle.EditTaxeTrimestrielTitle_nbrMoisRetard}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{taxeTrimestrielController.update}" value="#{bundle.Save}" update="display,:TaxeTrimestrielListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TaxeTrimestrielEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TaxeTrimestrielEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

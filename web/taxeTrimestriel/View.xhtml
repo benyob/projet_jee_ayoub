@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TaxeTrimestrielViewDlg" widgetVar="TaxeTrimestrielViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTaxeTrimestrielTitle}">
+            <h:form id="TaxeTrimestrielViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{taxeTrimestrielController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_local}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.local}" title="#{bundle.ViewTaxeTrimestrielTitle_local}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_user}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.user}" title="#{bundle.ViewTaxeTrimestrielTitle_user}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_taxeAnnuel}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.taxeAnnuel}" title="#{bundle.ViewTaxeTrimestrielTitle_taxeAnnuel}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_redevable}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.redevable}" title="#{bundle.ViewTaxeTrimestrielTitle_redevable}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_id}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.id}" title="#{bundle.ViewTaxeTrimestrielTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_chiffreAffaire}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.chiffreAffaire}" title="#{bundle.ViewTaxeTrimestrielTitle_chiffreAffaire}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_montantRetardTotal}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.montantRetardTotal}" title="#{bundle.ViewTaxeTrimestrielTitle_montantRetardTotal}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_numeroTrimestre}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.numeroTrimestre}" title="#{bundle.ViewTaxeTrimestrielTitle_numeroTrimestre}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_retardMois}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.retardMois}" title="#{bundle.ViewTaxeTrimestrielTitle_retardMois}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_retardAutresMois}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.retardAutresMois}" title="#{bundle.ViewTaxeTrimestrielTitle_retardAutresMois}"/>
+                        <h:outputText value="#{bundle.ViewTaxeTrimestrielLabel_nbrMoisRetard}"/>
+                        <h:outputText value="#{taxeTrimestrielController.selected.nbrMoisRetard}" title="#{bundle.ViewTaxeTrimestrielTitle_nbrMoisRetard}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TaxeTrimestrielViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

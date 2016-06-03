@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TauxTaxeRetardTrimestrielCreateDlg" widgetVar="TauxTaxeRetardTrimestrielCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTauxTaxeRetardTrimestrielTitle}">
+            <h:form id="TauxTaxeRetardTrimestrielCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tauxTaxeRetardTrimestrielController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTauxTaxeRetardTrimestrielLabel_tauxRetardPremierMois}" for="tauxRetardPremierMois" />
+                        <p:inputText id="tauxRetardPremierMois" value="#{tauxTaxeRetardTrimestrielController.selected.tauxRetardPremierMois}" title="#{bundle.CreateTauxTaxeRetardTrimestrielTitle_tauxRetardPremierMois}" />
+                        <p:outputLabel value="#{bundle.CreateTauxTaxeRetardTrimestrielLabel_tauxRetardAutresMois}" for="tauxRetardAutresMois" />
+                        <p:inputText id="tauxRetardAutresMois" value="#{tauxTaxeRetardTrimestrielController.selected.tauxRetardAutresMois}" title="#{bundle.CreateTauxTaxeRetardTrimestrielTitle_tauxRetardAutresMois}" />
+                        <p:outputLabel value="#{bundle.CreateTauxTaxeRetardTrimestrielLabel_dateApplication}" for="dateApplication" />
+                        <p:calendar id="dateApplication" pattern="MM/dd/yyyy" value="#{tauxTaxeRetardTrimestrielController.selected.dateApplication}" title="#{bundle.EditTauxTaxeRetardTrimestrielTitle_dateApplication}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTauxTaxeRetardTrimestrielLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tauxTaxeRetardTrimestrielController.selected.id}" title="#{bundle.CreateTauxTaxeRetardTrimestrielTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tauxTaxeRetardTrimestrielController.create}" value="#{bundle.Save}" update="display,:TauxTaxeRetardTrimestrielListForm:datalist,:growl" oncomplete="handleSubmit(args,'TauxTaxeRetardTrimestrielCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TauxTaxeRetardTrimestrielCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

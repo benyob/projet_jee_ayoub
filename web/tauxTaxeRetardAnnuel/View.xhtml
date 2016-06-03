@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TauxTaxeRetardAnnuelViewDlg" widgetVar="TauxTaxeRetardAnnuelViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTauxTaxeRetardAnnuelTitle}">
+            <h:form id="TauxTaxeRetardAnnuelViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tauxTaxeRetardAnnuelController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTauxTaxeRetardAnnuelLabel_tauxrRetard}"/>
+                        <h:outputText value="#{tauxTaxeRetardAnnuelController.selected.tauxrRetard}" title="#{bundle.ViewTauxTaxeRetardAnnuelTitle_tauxrRetard}"/>
+                        <h:outputText value="#{bundle.ViewTauxTaxeRetardAnnuelLabel_dateApplication}"/>
+                        <h:outputText value="#{tauxTaxeRetardAnnuelController.selected.dateApplication}" title="#{bundle.ViewTauxTaxeRetardAnnuelTitle_dateApplication}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTauxTaxeRetardAnnuelLabel_id}"/>
+                        <h:outputText value="#{tauxTaxeRetardAnnuelController.selected.id}" title="#{bundle.ViewTauxTaxeRetardAnnuelTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TauxTaxeRetardAnnuelViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTaxeTrimestrielTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="TaxeTrimestrielListForm">
+                <p:panel header="#{bundle.ListTaxeTrimestrielTitle}">
+                    <p:dataTable id="datalist" value="#{taxeTrimestrielController.items}" var="item"
+                                 selectionMode="single" selection="#{taxeTrimestrielController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_local}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.local}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_user}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.user}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_taxeAnnuel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taxeAnnuel}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_redevable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redevable}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_chiffreAffaire}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chiffreAffaire}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_montantRetardTotal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.montantRetardTotal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_numeroTrimestre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroTrimestre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_retardMois}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retardMois}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_retardAutresMois}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retardAutresMois}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_nbrMoisRetard}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrMoisRetard}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{taxeTrimestrielController.prepareCreate}" update=":TaxeTrimestrielCreateForm" oncomplete="PF('TaxeTrimestrielCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TaxeTrimestrielViewForm" oncomplete="PF('TaxeTrimestrielViewDialog').show()" disabled="#{empty taxeTrimestrielController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TaxeTrimestrielEditForm" oncomplete="PF('TaxeTrimestrielEditDialog').show()" disabled="#{empty taxeTrimestrielController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{taxeTrimestrielController.destroy}" update=":growl,datalist" disabled="#{empty taxeTrimestrielController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>
