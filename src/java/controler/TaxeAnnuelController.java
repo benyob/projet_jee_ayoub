@@ -495,7 +495,7 @@ public class TaxeAnnuelController implements Serializable {
 
         }
 
-        return moisRetard - nbrmoisignorer;
+        return moisRetard  - nbrmoisignorer;
     }
 
 }
