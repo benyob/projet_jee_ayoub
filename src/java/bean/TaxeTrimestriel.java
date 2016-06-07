@@ -7,11 +7,13 @@ package bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -26,14 +28,16 @@ public class TaxeTrimestriel implements Serializable {
     private Long id;
 
     private BigDecimal chiffreAffaire;
-    private BigDecimal montantRetardTotal;
+
+    private BigDecimal taxe;
+    private BigDecimal retard;
+    private BigDecimal totalTaxe;
+
     private int numeroTrimestre;
-    private BigDecimal retardMois;
-    private BigDecimal retardAutresMois;
     private int nbrMoisRetard;
 
-    @ManyToOne
-    private Local local;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date datePresentation;
 
     @ManyToOne
     User user;
@@ -44,20 +48,44 @@ public class TaxeTrimestriel implements Serializable {
     @ManyToOne
     Redevable redevable;
 
-    public Local getLocal() {
-        return local;
-    }
-
-    public void setLocal(Local local) {
-        this.local = local;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public BigDecimal getTaxe() {
+        return taxe;
+    }
+
+    public void setTaxe(BigDecimal taxe) {
+        this.taxe = taxe;
+    }
+
+    public BigDecimal getRetard() {
+        return retard;
+    }
+
+    public void setRetard(BigDecimal retard) {
+        this.retard = retard;
+    }
+
+    public BigDecimal getTotalTaxe() {
+        return totalTaxe;
+    }
+
+    public void setTotalTaxe(BigDecimal totalTaxe) {
+        this.totalTaxe = totalTaxe;
+    }
+
+    public Date getDatePresentation() {
+        return datePresentation;
+    }
+
+    public void setDatePresentation(Date datePresentation) {
+        this.datePresentation = datePresentation;
     }
 
     public TaxeAnnuel getTaxeAnnuel() {
@@ -88,36 +116,12 @@ public class TaxeTrimestriel implements Serializable {
         this.chiffreAffaire = chiffreAffaire;
     }
 
-    public BigDecimal getMontantRetardTotal() {
-        return montantRetardTotal;
-    }
-
-    public void setMontantRetardTotal(BigDecimal montantRetardTotal) {
-        this.montantRetardTotal = montantRetardTotal;
-    }
-
     public int getNumeroTrimestre() {
         return numeroTrimestre;
     }
 
     public void setNumeroTrimestre(int numeroTrimestre) {
         this.numeroTrimestre = numeroTrimestre;
-    }
-
-    public BigDecimal getRetardMois() {
-        return retardMois;
-    }
-
-    public void setRetardMois(BigDecimal retardMois) {
-        this.retardMois = retardMois;
-    }
-
-    public BigDecimal getRetardAutresMois() {
-        return retardAutresMois;
-    }
-
-    public void setRetardAutresMois(BigDecimal retardAutresMois) {
-        this.retardAutresMois = retardAutresMois;
     }
 
     public int getNbrMoisRetard() {

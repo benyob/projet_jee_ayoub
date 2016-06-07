@@ -5,14 +5,16 @@
  */
 package service;
 
+import bean.TaxeAnnuel;
 import bean.TaxeTrimestriel;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author pc
+ * @author MarouaneKH
  */
 @Stateless
 public class TaxeTrimestrielFacade extends AbstractFacade<TaxeTrimestriel> {
@@ -28,5 +30,13 @@ public class TaxeTrimestrielFacade extends AbstractFacade<TaxeTrimestriel> {
     public TaxeTrimestrielFacade() {
         super(TaxeTrimestriel.class);
     }
-    
+
+    public List<TaxeTrimestriel> getTaxeTrimByTaxeAnnuel(TaxeAnnuel taxeAnnuel) {
+        System.out.println("SELECT TX FROM TaxeTrimestriel TX WHERE TX.taxeAnnuel.id=" + taxeAnnuel.getId());
+        List<TaxeTrimestriel> list = em.createQuery("SELECT TX FROM TaxeTrimestriel TX WHERE TX.taxeAnnuel.id = :id").setParameter("id", taxeAnnuel.getId()).getResultList();;
+        System.out.println("Ha size " + list.size());
+        return list;
+
+    }
+
 }

@@ -12,18 +12,20 @@
             <h:form id="TaxeTrimestrielCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{taxeTrimestrielController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_local}" for="local" />
-                        <p:selectOneMenu id="local" value="#{taxeTrimestrielController.selected.local}" >
-                            <f:selectItems value="#{localController.itemsAvailableSelectOne}"
-                                           var="localItem"
-                                           itemValue="#{localItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_user}" for="user" />
                         <p:selectOneMenu id="user" value="#{taxeTrimestrielController.selected.user}" >
                             <f:selectItems value="#{userController.itemsAvailableSelectOne}"
                                            var="userItem"
                                            itemValue="#{userItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_taxe}" for="taxe" />
+                        <p:inputText id="taxe" value="#{taxeTrimestrielController.selected.taxe}" title="#{bundle.CreateTaxeTrimestrielTitle_taxe}" />
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_retard}" for="retard" />
+                        <p:inputText id="retard" value="#{taxeTrimestrielController.selected.retard}" title="#{bundle.CreateTaxeTrimestrielTitle_retard}" />
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_totalTaxe}" for="totalTaxe" />
+                        <p:inputText id="totalTaxe" value="#{taxeTrimestrielController.selected.totalTaxe}" title="#{bundle.CreateTaxeTrimestrielTitle_totalTaxe}" />
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_datePresentation}" for="datePresentation" />
+                        <p:calendar id="datePresentation" pattern="MM/dd/yyyy" value="#{taxeTrimestrielController.selected.datePresentation}" title="#{bundle.EditTaxeTrimestrielTitle_datePresentation}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_taxeAnnuel}" for="taxeAnnuel" />
                         <p:selectOneMenu id="taxeAnnuel" value="#{taxeTrimestrielController.selected.taxeAnnuel}" >
                             <f:selectItems value="#{taxeAnnuelController.itemsAvailableSelectOne}"
@@ -40,14 +42,8 @@
                         <p:inputText id="id" value="#{taxeTrimestrielController.selected.id}" title="#{bundle.CreateTaxeTrimestrielTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_chiffreAffaire}" for="chiffreAffaire" />
                         <p:inputText id="chiffreAffaire" value="#{taxeTrimestrielController.selected.chiffreAffaire}" title="#{bundle.CreateTaxeTrimestrielTitle_chiffreAffaire}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_montantRetardTotal}" for="montantRetardTotal" />
-                        <p:inputText id="montantRetardTotal" value="#{taxeTrimestrielController.selected.montantRetardTotal}" title="#{bundle.CreateTaxeTrimestrielTitle_montantRetardTotal}" />
                         <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_numeroTrimestre}" for="numeroTrimestre" />
                         <p:inputText id="numeroTrimestre" value="#{taxeTrimestrielController.selected.numeroTrimestre}" title="#{bundle.CreateTaxeTrimestrielTitle_numeroTrimestre}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_retardMois}" for="retardMois" />
-                        <p:inputText id="retardMois" value="#{taxeTrimestrielController.selected.retardMois}" title="#{bundle.CreateTaxeTrimestrielTitle_retardMois}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_retardAutresMois}" for="retardAutresMois" />
-                        <p:inputText id="retardAutresMois" value="#{taxeTrimestrielController.selected.retardAutresMois}" title="#{bundle.CreateTaxeTrimestrielTitle_retardAutresMois}" />
                         <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_nbrMoisRetard}" for="nbrMoisRetard" />
                         <p:inputText id="nbrMoisRetard" value="#{taxeTrimestrielController.selected.nbrMoisRetard}" title="#{bundle.CreateTaxeTrimestrielTitle_nbrMoisRetard}" />
                     </p:panelGrid>

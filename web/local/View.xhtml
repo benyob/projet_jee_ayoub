@@ -12,6 +12,10 @@
             <h:form id="LocalViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLocalLabel_idDernierTaxeTrimestrielPaye}"/>
+                        <h:outputText value="#{localController.selected.idDernierTaxeTrimestrielPaye}" title="#{bundle.ViewLocalTitle_idDernierTaxeTrimestrielPaye}"/>
+                        <h:outputText value="#{bundle.ViewLocalLabel_rue}"/>
+                        <h:outputText value="#{localController.selected.rue}" title="#{bundle.ViewLocalTitle_rue}"/>
                         <h:outputText value="#{bundle.ViewLocalLabel_redevable}"/>
                         <h:outputText value="#{localController.selected.redevable}" title="#{bundle.ViewLocalTitle_redevable}"/>
                         <h:outputText value="#{bundle.ViewLocalLabel_id}"/>

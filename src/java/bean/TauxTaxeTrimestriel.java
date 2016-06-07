@@ -36,6 +36,14 @@ public class TauxTaxeTrimestriel implements Serializable {
     @ManyToOne
     User user;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public BigDecimal getTauxTaxe() {
         return tauxTaxe;
     }

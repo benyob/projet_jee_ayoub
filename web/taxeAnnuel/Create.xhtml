@@ -12,24 +12,56 @@
             <h:form id="TaxeAnnuelCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{taxeAnnuelController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_totalTaxes}" for="totalTaxes" />
-                        <p:inputText id="totalTaxes" value="#{taxeAnnuelController.selected.totalTaxes}" title="#{bundle.CreateTaxeAnnuelTitle_totalTaxes}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_datePresentation}" for="datePresentation" />
-                        <p:calendar id="datePresentation" pattern="MM/dd/yyyy" value="#{taxeAnnuelController.selected.datePresentation}" title="#{bundle.EditTaxeAnnuelTitle_datePresentation}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_nbrMoisRetard}" for="nbrMoisRetard" />
-                        <p:inputText id="nbrMoisRetard" value="#{taxeAnnuelController.selected.nbrMoisRetard}" title="#{bundle.CreateTaxeAnnuelTitle_nbrMoisRetard}" />
+
+
+
+                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_local}" for="local" />
+                        <p:selectOneMenu valueChangeListener="test" id="local" value="#{taxeAnnuelController.selected.local}" >
+                            <f:selectItems value="#{localController.itemsAvailableSelectOne}"
+                                           var="localItem"
+                                           itemValue="#{localItem}"/>
+
+                            <p:ajax listener="#{taxeAnnuelController.getDernierTaxeTrimestriel()}" update="redevable numeroTrimestre annee" />
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_redevable}" for="redevable" />
+                        <p:inputText  id="redevable" disabled="true" value="#{taxeAnnuelController.selected.redevable.nom}" />
+
+
+
                         <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_annee}" for="annee" />
-                        <p:inputText id="annee" value="#{taxeAnnuelController.selected.annee}" title="#{bundle.CreateTaxeAnnuelTitle_annee}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_chiffreAffaireTotal}" for="chiffreAffaireTotal" />
-                        <p:inputText id="chiffreAffaireTotal" value="#{taxeAnnuelController.selected.chiffreAffaireTotal}" title="#{bundle.CreateTaxeAnnuelTitle_chiffreAffaireTotal}" />
-                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{taxeAnnuelController.selected.id}" title="#{bundle.CreateTaxeAnnuelTitle_id}" />
+                        <p:inputText id="annee" disabled="#{taxeAnnuelController.dejaPaye}" value="#{taxeAnnuelController.selected.annee}" title="#{bundle.CreateTaxeAnnuelTitle_annee}" />
+
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_numeroTrimestre}" for="numeroTrimestre" />
+                        <p:inputText id="numeroTrimestre" disabled="#{taxeAnnuelController.dejaPaye}" value="#{taxeAnnuelController.taxeTrimestriel.numeroTrimestre}" title="#{bundle.CreateTaxeTrimestrielTitle_numeroTrimestre}" />
+
+
+
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimestrielLabel_chiffreAffaire}" for="chiffreAffaire" />
+                        <p:inputText id="chiffreAffaire" value="#{taxeAnnuelController.taxeTrimestriel.chiffreAffaire}" title="#{bundle.CreateTaxeTrimestrielTitle_chiffreAffaire}" />
+
+
+
+
+
+                        <p:outputLabel value="#{bundle.CreateTaxeAnnuelLabel_datePresentation}" for="datePresentation" />
+                        <p:calendar id="datePresentation" pattern="MM/dd/yyyy" value="#{taxeAnnuelController.taxeTrimestriel.datePresentation}" title="#{bundle.EditTaxeAnnuelTitle_datePresentation}"  showOn="button"/>
+
+
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{taxeAnnuelController.create}" value="#{bundle.Save}" update="display,:TaxeAnnuelListForm:datalist,:growl" oncomplete="handleSubmit(args,'TaxeAnnuelCreateDialog');"/>
+                    <p:commandButton actionListener="#{taxeAnnuelController.create}" value="#{bundle.Save}" update="display,:TaxeAnnuelListForm:datalist,:TaxeTrimestrielListForm:datalistTaxeTrim,:growl" oncomplete="handleSubmit(args,'TaxeAnnuelCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TaxeAnnuelCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
+
+        <script>
+            function test(EventListener EventListener) {
+                alert('ll');
+            }
+        </script>
 
     </ui:composition>
 </html>

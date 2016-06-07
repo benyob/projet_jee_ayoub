@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -23,15 +24,14 @@ import javax.persistence.Temporal;
 @Entity
 public class TaxeAnnuel implements Serializable {
 
-    @OneToMany(mappedBy = "taxeAnnuel")
-    private List<TaxeTrimestriel> taxeTrimestriels;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private BigDecimal totalTaxes;
+    private BigDecimal retardPremierMois;
+    private BigDecimal retardAutresMois;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePresentation;
@@ -40,8 +40,66 @@ public class TaxeAnnuel implements Serializable {
     private int annee;
     private BigDecimal chiffreAffaireTotal;
 
+    @OneToMany(mappedBy = "taxeAnnuel")
+    private List<TaxeTrimestriel> taxeTrimestriels;
+
+    @ManyToOne
+    Local local;
+    @ManyToOne
+    Redevable redevable;
+
+    public Local getLocal() {
+        if (local == null) {
+            local = new Local();
+        }
+        //System.out.println("getttttttttttter " + local.getPatente());
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+    }
+
+    public Redevable getRedevable() {
+        if (redevable == null) {
+            redevable = new Redevable();
+        }
+        //System.out.println("redevable " + redevable.getNom());
+        return redevable;
+    }
+
+    public void setRedevable(Redevable redevable) {
+        this.redevable = redevable;
+        //System.out.println("redevable " + redevable.getNom());
+
+    }
+
+    public BigDecimal getRetardPremierMois() {
+        return retardPremierMois;
+    }
+
+    public void setRetardPremierMois(BigDecimal retardPremierMois) {
+        this.retardPremierMois = retardPremierMois;
+    }
+
+    public BigDecimal getRetardAutresMois() {
+        return retardAutresMois;
+    }
+
+    public void setRetardAutresMois(BigDecimal retardAutresMois) {
+        this.retardAutresMois = retardAutresMois;
+    }
+
     public BigDecimal getTotalTaxes() {
         return totalTaxes;
+    }
+
+    public List<TaxeTrimestriel> getTaxeTrimestriels() {
+        return taxeTrimestriels;
+    }
+
+    public void setTaxeTrimestriels(List<TaxeTrimestriel> taxeTrimestriels) {
+        this.taxeTrimestriels = taxeTrimestriels;
     }
 
     public void setTotalTaxes(BigDecimal totalTaxes) {

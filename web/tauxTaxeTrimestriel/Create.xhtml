@@ -12,6 +12,12 @@
             <h:form id="TauxTaxeTrimestrielCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tauxTaxeTrimestrielController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTauxTaxeTrimestrielLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{tauxTaxeTrimestrielController.selected.user}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateTauxTaxeTrimestrielLabel_tauxTaxe}" for="tauxTaxe" />
                         <p:inputText id="tauxTaxe" value="#{tauxTaxeTrimestrielController.selected.tauxTaxe}" title="#{bundle.CreateTauxTaxeTrimestrielTitle_tauxTaxe}" />
                         <p:outputLabel value="#{bundle.CreateTauxTaxeTrimestrielLabel_dateApplication}" for="dateApplication" />

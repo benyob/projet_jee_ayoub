@@ -29,15 +29,9 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTauxTaxeRetardTrimestrielTitle_tauxRetardPremierMois}"/>
+                                <h:outputText value="#{bundle.ListTauxTaxeRetardTrimestrielTitle_user}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tauxRetardPremierMois}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTauxTaxeRetardTrimestrielTitle_tauxRetardAutresMois}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tauxRetardAutresMois}"/>
+                            <h:outputText value="#{item.user}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -46,6 +40,12 @@
                             <h:outputText value="#{item.dateApplication}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTauxTaxeRetardTrimestrielTitle_tauxrRetard}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tauxrRetard}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

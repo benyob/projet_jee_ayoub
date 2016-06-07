@@ -29,6 +29,18 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalTitle_idDernierTaxeTrimestrielPaye}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDernierTaxeTrimestrielPaye}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLocalTitle_rue}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rue}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocalTitle_redevable}"/>
                             </f:facet>
                             <h:outputText value="#{item.redevable}"/>

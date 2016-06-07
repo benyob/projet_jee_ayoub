@@ -12,6 +12,8 @@
             <h:form id="TauxTaxeTrimestrielViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tauxTaxeTrimestrielController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTauxTaxeTrimestrielLabel_user}"/>
+                        <h:outputText value="#{tauxTaxeTrimestrielController.selected.user}" title="#{bundle.ViewTauxTaxeTrimestrielTitle_user}"/>
                         <h:outputText value="#{bundle.ViewTauxTaxeTrimestrielLabel_tauxTaxe}"/>
                         <h:outputText value="#{tauxTaxeTrimestrielController.selected.tauxTaxe}" title="#{bundle.ViewTauxTaxeTrimestrielTitle_tauxTaxe}"/>
                         <h:outputText value="#{bundle.ViewTauxTaxeTrimestrielLabel_dateApplication}"/>

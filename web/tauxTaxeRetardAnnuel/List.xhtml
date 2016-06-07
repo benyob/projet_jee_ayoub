@@ -29,9 +29,21 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTauxTaxeRetardAnnuelTitle_tauxrRetard}"/>
+                                <h:outputText value="#{bundle.ListTauxTaxeRetardAnnuelTitle_user}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tauxrRetard}"/>
+                            <h:outputText value="#{item.user}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTauxTaxeRetardAnnuelTitle_tauxRetardPremierMois}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tauxRetardPremierMois}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTauxTaxeRetardAnnuelTitle_tauxRetardAutresMois}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tauxRetardAutresMois}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

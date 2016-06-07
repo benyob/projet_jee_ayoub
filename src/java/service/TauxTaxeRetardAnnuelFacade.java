@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author pc
+ * @author MarouaneKH
  */
 @Stateless
 public class TauxTaxeRetardAnnuelFacade extends AbstractFacade<TauxTaxeRetardAnnuel> {

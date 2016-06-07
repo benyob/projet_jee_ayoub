@@ -29,15 +29,35 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_local}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.local}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_user}"/>
                             </f:facet>
                             <h:outputText value="#{item.user}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_taxe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taxe}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_retard}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.retard}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_totalTaxe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalTaxe}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_datePresentation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datePresentation}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -65,27 +85,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_montantRetardTotal}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.montantRetardTotal}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_numeroTrimestre}"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroTrimestre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_retardMois}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retardMois}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimestrielTitle_retardAutresMois}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.retardAutresMois}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

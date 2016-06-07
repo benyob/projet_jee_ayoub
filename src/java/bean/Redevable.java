@@ -6,10 +6,12 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,6 +19,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class Redevable implements Serializable {
+
+    @OneToMany(mappedBy = "redevable")
+    private List<TaxeTrimestriel> taxeTrimestriels;
+
+    @OneToMany(mappedBy = "redevable")
+    private List<TaxeAnnuel> taxeAnnuels;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +39,22 @@ public class Redevable implements Serializable {
     private String cin;
     private String rc;
     private Boolean personnePhysique;
+
+    public List<TaxeTrimestriel> getTaxeTrimestriels() {
+        return taxeTrimestriels;
+    }
+
+    public void setTaxeTrimestriels(List<TaxeTrimestriel> taxeTrimestriels) {
+        this.taxeTrimestriels = taxeTrimestriels;
+    }
+
+    public List<TaxeAnnuel> getTaxeAnnuels() {
+        return taxeAnnuels;
+    }
+
+    public void setTaxeAnnuels(List<TaxeAnnuel> taxeAnnuels) {
+        this.taxeAnnuels = taxeAnnuels;
+    }
 
     public String getTel() {
         return tel;
@@ -126,7 +150,7 @@ public class Redevable implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Redevable[ id=" + id + " ]";
+        return nom + " " + prenom;
     }
 
 }
