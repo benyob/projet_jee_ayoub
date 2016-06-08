@@ -60,17 +60,6 @@ public class TaxeAnnuelController implements Serializable {
 
     private boolean dejaPaye;
 
-    private String nom = "mama";
-
-    private enum Etat {
-        auCours, dernierTrim
-    }
-    private Etat etat;
-
-    public Etat getEtat() {
-        return etat;
-    }
-
     public TauxTaxeRetardTrimestrielFacade getTauxTaxeRetardTrimestrielFacade() {
         return tauxTaxeRetardTrimestrielFacade;
     }
@@ -95,24 +84,12 @@ public class TaxeAnnuelController implements Serializable {
         this.localFacade = localFacade;
     }
 
-    public void setEtat(Etat etat) {
-        this.etat = etat;
-    }
-
     public boolean isDejaPaye() {
         return dejaPaye;
     }
 
     public void setDejaPaye(boolean dejaPaye) {
         this.dejaPaye = dejaPaye;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public TaxeAnnuelController() {
@@ -129,9 +106,8 @@ public class TaxeAnnuelController implements Serializable {
     public void getDernierTaxeTrimestriel() {
         setRedevable();
 
-        TaxeAnnuel annuel = ejbFacade.getDernierTaxeTrimestriel(selected.getLocal());
+        if (selected.getLocal().getIdDernierTaxeTrimestrielPaye() == -1) {
 
-        if (annuel == null) {
             dejaPaye = false;
 
             Local local = selected.getLocal();
@@ -149,6 +125,8 @@ public class TaxeAnnuelController implements Serializable {
 
             System.out.println("rah nulllllllll");
         } else {
+            TaxeAnnuel annuel = ejbFacade.getDernierTaxeTrimestriel(selected.getLocal());
+
             dejaPaye = true;
             taxeTrimestriel = new TaxeTrimestriel();
 
@@ -248,11 +226,6 @@ public class TaxeAnnuelController implements Serializable {
         if (selected.getLocal() != null) {
             selected.setRedevable(selected.getLocal().getRedevable());
         }
-    }
-
-    public void getMama() {
-        System.out.println("maaa");
-        nom = ejbFacade.find(new Long(1)).getRedevable().getPrenom();
     }
 
     public TaxeAnnuel getSelected() {
@@ -495,7 +468,7 @@ public class TaxeAnnuelController implements Serializable {
 
         }
 
-        return moisRetard  - nbrmoisignorer;
+        return moisRetard - nbrmoisignorer;
     }
 
 }
