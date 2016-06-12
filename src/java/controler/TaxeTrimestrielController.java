@@ -1,8 +1,10 @@
 package controler;
 
+import bean.Redevable;
 import bean.TaxeTrimestriel;
 import controler.util.JsfUtil;
 import controler.util.JsfUtil.PersistAction;
+import controler.util.SessionUtil;
 import service.TaxeTrimestrielFacade;
 
 import java.io.Serializable;
@@ -26,13 +28,48 @@ public class TaxeTrimestrielController implements Serializable {
     @EJB
     private service.TaxeTrimestrielFacade ejbFacade;
     private List<TaxeTrimestriel> items = null;
+    private List<TaxeTrimestriel> liste = null;
     private TaxeTrimestriel selected;
+    private Redevable redevable;
 
     public TaxeTrimestrielController() {
     }
 
     public TaxeTrimestriel getSelected() {
         return selected;
+    }
+
+    public Redevable getRedevable() {
+        return redevable;
+    }
+
+    public void setRedevable() {
+        this.redevable = SessionUtil.getConnectedRedevable();
+        System.out.println("bissmilaaaah "+ redevable.getNom());
+    }
+    
+    public TaxeTrimestrielFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(TaxeTrimestrielFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public List<TaxeTrimestriel> getListe() {
+        if (liste == null) {
+            liste = getFacade().getTaxeTrimByRedevable(redevable.getId());
+        }
+        for(int i=0;i<liste.size();i++){
+            System.out.println("hhh "+liste.get(i));
+        }
+        return liste;
+    }
+
+
+    
+    public void setListe(List<TaxeTrimestriel> liste) {
+        this.liste = liste;
     }
 
     public void setSelected(TaxeTrimestriel selected) {

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Soyez les bienvenus</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+    </h:head>
+    <h:body>
+        #{taxeTrimestrielController.setRedevable()}
+        #{taxeAnnuelController.setMonRedevable()}
+        #{taxeAnnuelController.setMonLocal()}
+
+        <div id="clouds">
+            <div class="cloud x1"></div>
+            <!-- Clouds  -->
+            <div class="cloud x2"></div>
+            <div class="cloud x3"></div>
+
+        </div>
+        <h:form>
+            <p:tabMenu activeIndex="#{param.i}" >
+                <p:menuitem value="Mes taxes trimistriels" action="/view/mestxtr" icon="ui-icon-document" >
+                    <f:param name="i" value="0" />
+                </p:menuitem>
+                <p:menuitem value="Mes taxes Annuels" action="/view/mestxan" icon="ui-icon-document">
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+                <p:menuitem value="Simuler prochaine taxe" action="/view/prochainetaxe" icon="ui-icon-document">
+                    <f:param name="i" value="2" />
+                </p:menuitem>
+            </p:tabMenu>
+        </h:form>
+
+
+    </h:body>
+</html>

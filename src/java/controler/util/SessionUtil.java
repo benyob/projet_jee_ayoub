@@ -1,6 +1,7 @@
 package controler.util;
 
 //import bean.Commune;
+import bean.Redevable;
 import bean.User;
 import java.io.IOException;
 import javax.faces.context.FacesContext;
@@ -18,13 +19,24 @@ public class SessionUtil {
 //        myCommune.getUsers().add(user);
 //        registerUser(user);
 //    }
-
     public static void registerUser(User user) {
         setAttribute("user", user);
     }
 
+    public static void registerRedevable(Redevable redevable) {
+        setAttribute("redevable", redevable);
+    }
+
+    public static Redevable getConnectedRedevable() {
+        return (Redevable) getAttribute("redevable");
+    }
+
     public static User getConnectedUser() {
         return (User) getAttribute("user");
+    }
+
+    public static void deconnexion() {
+
     }
 
 //    public static Commune getCurrentCommune() {
@@ -34,9 +46,6 @@ public class SessionUtil {
 //        }
 //        return new Commune();
 //    }
-
-   
-
     public static SessionUtil getInstance() {
         return instance;
     }

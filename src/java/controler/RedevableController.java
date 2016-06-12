@@ -1,8 +1,12 @@
 package controler;
 
 import bean.Redevable;
+import bean.TaxeAnnuel;
+import bean.TaxeTrimestriel;
 import controler.util.JsfUtil;
 import controler.util.JsfUtil.PersistAction;
+import controler.util.SessionUtil;
+import java.io.IOException;
 import service.RedevableFacade;
 
 import java.io.Serializable;
@@ -10,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -19,20 +24,117 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
 @Named("redevableController")
 @SessionScoped
 public class RedevableController implements Serializable {
 
-
-    @EJB private service.RedevableFacade ejbFacade;
+    @EJB
+    private service.RedevableFacade ejbFacade;
     private List<Redevable> items = null;
+    private List<TaxeTrimestriel> listeTaxesTrimestriels = null;
+    private List<TaxeAnnuel> listeTaxesAnnuels;
     private Redevable selected;
+    private String login;
+    private String password;
+
+    public void setItems(List<Redevable> items) {
+        this.items = items;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public void init() {
+        listeTaxesTrimestriels = ejbFacade.getMyTaxeTrimstriel(1);
+        listeTaxesAnnuels = ejbFacade.getMyTaxeAnnuel(1);
+    }
+
+    public List<TaxeTrimestriel> getMyTaxeTrimstriel() {
+        return listeTaxesTrimestriels;
+    }
+
+    public List<TaxeAnnuel> getMyTaxeAnnuel(int id) {
+        return listeTaxesAnnuels;
+    }
+
+    public void chercherRedevable() {
+        selected = ejbFacade.chercherRedevable(login, password);
+        if (selected == null) {
+            JsfUtil.addErrorMessage("Login ou Passwrod errone");
+        } else {
+            SessionUtil.registerRedevable(selected);
+            try {
+                SessionUtil.redirect("/projet_jeemaster/faces/view/menu");
+            } catch (IOException ex) {
+                Logger.getLogger(RedevableController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.out.println("login " + selected.getLogin() + " password " + selected.getPassword());
+    }
+
+    public Redevable getConnectedRedevable() {
+        Redevable redevable = SessionUtil.getConnectedRedevable();
+        if (redevable == null) {
+            return new Redevable();
+        }
+        return redevable;
+    }
+
+    public void deconnexion() {
+        SessionUtil.deconnexion();
+    }
+
+///////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////// getters & setters
+    public RedevableFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(RedevableFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public List<TaxeTrimestriel> getListeTaxesTrimestriels() {
+        if (listeTaxesTrimestriels == null) {
+            listeTaxesTrimestriels = getFacade().getMyTaxeTrimstriel(1);
+        }
+        return listeTaxesTrimestriels;
+    }
+
+    public void setListeTaxesTrimestriels(List<TaxeTrimestriel> listeTaxesTrimestriels) {
+        this.listeTaxesTrimestriels = listeTaxesTrimestriels;
+    }
+
+    public List<TaxeAnnuel> getListeTaxesAnnuels() {
+        return listeTaxesAnnuels;
+    }
+
+    public void setListeTaxesAnnuels(List<TaxeAnnuel> listeTaxesAnnuels) {
+        this.listeTaxesAnnuels = listeTaxesAnnuels;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public RedevableController() {
     }
 
     public Redevable getSelected() {
+        if (selected == null) {
+            selected = new Redevable();
+        }
         return selected;
     }
 
@@ -122,7 +224,7 @@ public class RedevableController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass=Redevable.class)
+    @FacesConverter(forClass = Redevable.class)
     public static class RedevableControllerConverter implements Converter {
 
         @Override
@@ -130,7 +232,7 @@ public class RedevableController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RedevableController controller = (RedevableController)facesContext.getApplication().getELResolver().
+            RedevableController controller = (RedevableController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "redevableController");
             return controller.getRedevable(getKey(value));
         }

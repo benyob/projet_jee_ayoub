@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Soyez les bienvenus</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+    </h:head>
+    <h:body>
+
+        <div id="clouds">
+            <div class="cloud x1"></div>
+            <!-- Clouds  -->
+            <div class="cloud x2"></div>
+        </div>
+        <h:form>
+            <p:tabMenu activeIndex="#{param.i}" >
+                <p:menuitem value="Mes taxes trimistriels" action="/view/mestxtr" icon="ui-icon-document" >
+                    <f:param name="i" value="0" />
+                </p:menuitem>
+                <p:menuitem value="Mes taxes Annuels" action="/view/mestxan" icon="ui-icon-document">
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+                <p:menuitem value="Simuler prochaine taxe" action="/view/prochainetaxe" icon="ui-icon-document">
+                    <f:param name="i" value="2" />
+                </p:menuitem>
+            </p:tabMenu>
+        </h:form>
+        <h:form id="form">
+            <p:dataTable var="car" value="#{taxeAnnuelController.liste}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{car.id}" />
+                </p:column>
+
+                <p:column headerText="Année">
+                    <h:outputText value="#{car.annee}" />
+                </p:column>
+
+                <p:column headerText="CA total">
+                    <h:outputText value="#{car.chiffreAffaireTotal}" />
+                </p:column>
+
+                <p:column headerText="Date paiement">
+                    <h:outputText value="#{car.datePresentation}" />
+                </p:column>
+                <p:column headerText="Nombre de mois Retard">
+                    <h:outputText value="#{car.nbrMoisRetard}" />
+                </p:column>
+                <p:column headerText="Retard 1ere mois">
+                    <h:outputText value="#{car.retardPremierMois}" />
+                </p:column>
+                <p:column headerText="Retard autres mois">
+                    <h:outputText value="#{car.retardAutresMois}" />
+                </p:column>
+                <p:column headerText="Total taxes">
+                    <h:outputText value="#{car.totalTaxes}" />
+                </p:column>
+                <p:column headerText="Redevable">
+                    <h:outputText value="#{car.redevable.nom} #{car.redevable.prenom}" />
+                </p:column>
+                <p:column headerText="Local patente">
+                    <h:outputText value="#{car.local.patente}" />
+                </p:column>
+                <p:column headerText="Taxes trimistriels">
+                    <p:commandLink update=":form:taxeDetail" oncomplete="PF('taxeDialog').show()" title="Taxes trimistriels detail">
+                        <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                        <f:setPropertyActionListener value="#{taxeAnnuelController.setSelected(car)}" target="#{taxeAnnuelController.listeTrim}" />
+                    </p:commandLink>                
+                </p:column>
+            </p:dataTable>
+
+
+            <p:dialog header="Taxes trimistriels de l'année: #{taxeAnnuelController.selected.annee} " widgetVar="taxeDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="taxeDetail" style="text-align:center;">
+                    <p:dataTable var="taxetr" value="#{taxeAnnuelController.listeTrim}">
+
+                        <p:column headerText="Numero trimistre">
+                            <h:outputText value="#{taxetr.numeroTrimestre}" />
+                        </p:column>
+                        <p:column headerText="Année">
+                            <h:outputText value="#{taxetr.taxeAnnuel.annee}" />
+                        </p:column>
+                        <p:column headerText="Date paiement">
+                            <h:outputText value="#{taxetr.datePresentation}" />
+                        </p:column>
+                        <p:column headerText="Nombre mois retard">
+                            <h:outputText value="#{taxetr.nbrMoisRetard}" />
+                        </p:column>
+                        <p:column headerText="Chiffre d'affaire">
+                            <h:outputText value="#{taxetr.chiffreAffaire}" />
+                        </p:column>
+                        <p:column headerText="Retard">
+                            <h:outputText value="#{taxetr.retard}" />
+                        </p:column>
+                        <p:column headerText="Redevable">
+                            <h:outputText value="#{taxetr.redevable.nom} #{taxetr.redevable.prenom}" />
+                        </p:column>
+                        <p:column headerText="Taxe">
+                            <h:outputText value="#{taxetr.taxe}" />
+                        </p:column>
+                        <p:column headerText="Total Taxe">
+                            <h:outputText value="#{taxetr.totalTaxe}" />
+                        </p:column>
+                        <p:column headerText="Réglement">
+                            <p:graphicImage  url="/images/ok.png"/> 
+                        </p:column>
+
+                    </p:dataTable>
+                </p:outputPanel>
+            </p:dialog>
+
+
+        </h:form>
+
+    </h:body>
+</html>

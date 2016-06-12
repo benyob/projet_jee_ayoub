@@ -6,65 +6,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <title>Soyez les bienvenus</title>
+        <h:outputStylesheet name="css/style.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/local/List" value="Show All Local Items"/>
-        <br />
-        <h:link outcome="/quartier/List" value="Show All Quartier Items"/>
-        <br />
-        <h:link outcome="/redevable/List" value="Show All Redevable Items"/>
-        <br />
-        <h:link outcome="/rue/List" value="Show All Rue Items"/>
-        <br />
-        <h:link outcome="/secteur/List" value="Show All Secteur Items"/>
-        <br />
-        <h:link outcome="/tauxTaxeRetardAnnuel/List" value="Show All TauxTaxeRetardAnnuel Items"/>
-        <br />
-        <h:link outcome="/tauxTaxeRetardTrimestriel/List" value="Show All TauxTaxeRetardTrimestriel Items"/>
-        <br />
-        <h:link outcome="/tauxTaxeTrimestriel/List" value="Show All TauxTaxeTrimestriel Items"/>
-        <br />
-        <h:link outcome="/taxeAnnuel/List" value="Show All TaxeAnnuel Items"/>
-        <br />
-        <h:link outcome="/taxeTrimestriel/List" value="Show All TaxeTrimestriel Items"/>
-        <br />
-        <h:link outcome="/user/List" value="Show All User Items "/>
-        <br />ss
+        <div id="clouds">
+            <div class="cloud x1"></div>
+            <!-- Clouds  -->
+            <div class="cloud x2"></div>
+
+        </div>
+        <div class="container">
+            <div id="login">
+                <h:form>
+                    <p:fieldset class="clearfix" styleClass="haha">
+                        <p><span class="fontawesome-user"></span>
+                            <p:inputText value="#{redevableController.login}" onblur=" if (this.value == '')
+                                        this.value = 'Username'" onfocus="if (this.value == 'Username')
+                                                    this.value = ''" styleClass="username" id="login"/>
+                        </p>
+                        <p><span class="fontawesome-lock">
+                            </span><p:password  value="#{redevableController.password}" onblur=" if (this.value == '')
+                                        this.value = 'Password'" onfocus="if (this.value == 'Password')
+                                                    this.value = ''" styleClass="pass" id="password"/></p>                 
+                        <p:commandLink value="Se connecter" styleClass="envoyer" actionListener="#{redevableController.chercherRedevable()}"></p:commandLink>
+                    </p:fieldset>
+                </h:form>
+            </div> <!-- end login -->
+        </div>
 
 
-
-        <!--        <p:selectManyCheckbox id="custom" value="#{checkboxView.selectedConsoles2}" 
-                              layout="custom">
-            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-            <f:selectItem itemLabel="PS4" itemValue="PS4" />
-        </p:selectManyCheckbox>
-
-        <div class="ui-grid ui-grid-responsive">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-6" style="border: 1px solid black">
-        <p:outputLabel for="opt1" value="Xbox One" style="display:block"/>
-        <p:checkbox id="opt1" for="custom" itemIndex="0" onchange="test()"/>
-    </div>
-    <div class="ui-grid-col-6" style="border: 1px solid black">
-        <p:outputLabel for="opt2" value="PS4" style="display:block"/>
-        <p:checkbox id="opt2" for="custom"  itemIndex="1" />
-    </div>
-</div>
-</div>
-<script>
-function test() {
-Document.getElementsByTagName('checkbox');
-
-}
-</script>-->
-        <br />
-        <br />
 
 
 

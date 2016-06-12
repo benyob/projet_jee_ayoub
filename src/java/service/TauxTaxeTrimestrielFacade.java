@@ -38,9 +38,7 @@ public class TauxTaxeTrimestrielFacade extends AbstractFacade<TauxTaxeTrimestrie
 
     public TauxTaxeTrimestriel getTauxApplicable(int annee, int numTrimestre) {
         Date dateTrimetre = null;
-
         String dateString = annee + "-";
-
         if (numTrimestre == 1) {
             dateString += "1-1";
         } else if (numTrimestre == 2) {
@@ -62,7 +60,7 @@ public class TauxTaxeTrimestrielFacade extends AbstractFacade<TauxTaxeTrimestrie
 
         java.sql.Date dateSql = new java.sql.Date(dateTrimetre.getTime());
         System.out.println("------------ha sql " + dateSql);
-
+        System.out.println("SELECT TTT FROM TauxTaxeTrimestriel TTT WHERE TTT.dateApplication < "+ dateSql+" ORDER BY TTT.dateApplication DESC");
         List<TauxTaxeTrimestriel> res = em.createQuery("SELECT TTT FROM TauxTaxeTrimestriel TTT WHERE TTT.dateApplication < :dateTrim ORDER BY TTT.dateApplication DESC").setParameter("dateTrim", dateSql).getResultList();
 
         if (res.isEmpty()) {
@@ -71,5 +69,6 @@ public class TauxTaxeTrimestrielFacade extends AbstractFacade<TauxTaxeTrimestrie
             return res.get(0);
         }
     }
+
 
 }

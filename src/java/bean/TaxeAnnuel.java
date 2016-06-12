@@ -52,7 +52,7 @@ public class TaxeAnnuel implements Serializable {
         if (local == null) {
             local = new Local();
         }
-        //System.out.println("getttttttttttter " + local.getPatente());
+        System.out.println("getttttttttttter " + local.getPatente());
         return local;
     }
 
@@ -145,7 +145,7 @@ public class TaxeAnnuel implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

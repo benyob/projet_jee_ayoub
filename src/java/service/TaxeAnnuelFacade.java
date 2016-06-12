@@ -7,10 +7,12 @@ package service;
 
 import bean.Local;
 import bean.TaxeAnnuel;
+import bean.TaxeTrimestriel;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -38,5 +40,22 @@ public class TaxeAnnuelFacade extends AbstractFacade<TaxeAnnuel> {
             return null;
         }
         return res.get(0);
+    }
+    
+    
+
+    public List<TaxeAnnuel> getTaxeAnnuelByRedevable(double id) {
+        System.out.println("SELECT TX FROM TaxeAnnuel TX WHERE TX.taxeAnnuel.id=" + id);
+        Query query = em.createQuery("SELECT TX FROM TaxeAnnuel TX WHERE TX.redevable.id = :idd");
+        query.setParameter("idd", id);
+        System.out.println("Ha size " + query.getResultList().size());
+        return query.getResultList();
+    }
+    
+
+    public List<TaxeTrimestriel> getTaxeTrimByTaxeAnnuel(double id) {
+        List<TaxeTrimestriel> list = em.createQuery("SELECT TX FROM TaxeTrimestriel TX WHERE TX.taxeAnnuel.id = :id").setParameter("id", id).getResultList();
+        System.out.println("Ha size " + list.size());
+        return list;
     }
 }
