@@ -212,13 +212,13 @@ public class TaxeAnnuelController implements Serializable {
         //taxeTrimestriel.setNumeroTrimestre(annuel.getTaxeTrimestriels().get(0).getNumeroTrimestre());
         System.out.println("machi nulllllll");
         appliqueTauxTaxe();
-        
+
         afficherTaxeTrim(taxeTrimestriel);
 
     }
 
     public void appliqueTauxTaxe() {
-        System.out.println("anneee "+selected.getAnnee());
+        System.out.println("anneee " + selected.getAnnee());
         TauxTaxeTrimestriel ttt = tauxTaxeTrimestrielFacade.getTauxApplicable(selected.getAnnee(), taxeTrimestriel.getNumeroTrimestre());
         if (ttt == null) {
             System.out.println("Taux nuuuuuuuul");
@@ -244,7 +244,6 @@ public class TaxeAnnuelController implements Serializable {
 
             //selected.setChiffreAffaireTotal(selected.getChiffreAffaireTotal().add(taxeTrimestriel.getChiffreAffaire()));
             //selected.setTotalTaxes(selected.getTotalTaxes().add(totalTaxe));
-
             taxeTrimestriel.setNbrMoisRetard(nbrMois);
 
             taxeTrimestriel.setTaxe(taxe);
@@ -315,7 +314,7 @@ public class TaxeAnnuelController implements Serializable {
     public void afficherTaxeTrim(TaxeTrimestriel taxeTrimestriel) {
         System.out.println(" numero:" + taxeTrimestriel.getNumeroTrimestre());
         System.out.println(" date presentation:" + taxeTrimestriel.getDatePresentation());
-                System.out.println(" chiffre affaire:" + taxeTrimestriel.getChiffreAffaire());
+        System.out.println(" chiffre affaire:" + taxeTrimestriel.getChiffreAffaire());
 
         System.out.println(" total:" + taxeTrimestriel.getTotalTaxe());
 
